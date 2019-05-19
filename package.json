@@ -1,16 +1,16 @@
 {
-  "name": "model",
+  "name": "model-name",
   "version": "0.1.0",
   "description": "Model starter in TensorFlow.js",
   "main": "dist/index.js",
-  "jsnext:main": "dist/posenet.esm.js",
-  "module": "dist/posenet.esm.js",
-  "unpkg": "dist/posenet.min.js",
-  "jsdelivr": "dist/posenet.min.js",
+  "jsnext:main": "dist/model-name.esm.js",
+  "module": "dist/model-name.esm.js",
+  "unpkg": "dist/model-name.min.js",
+  "jsdelivr": "dist/model-name.min.js",
   "types": "dist/index.d.ts",
   "model": {
     "preamble": "// @tensorflow/tfjs-models Copyright 2019 Google",
-    "name": "model"
+    "name": "model-name"
   },
   "repository": {
     "type": "git",

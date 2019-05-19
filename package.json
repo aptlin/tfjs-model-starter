@@ -9,7 +9,6 @@
   "jsdelivr": "dist/model-name.min.js",
   "types": "dist/index.d.ts",
   "model": {
-    "preamble": "// @tensorflow/tfjs-models Copyright 2019 Google",
     "name": "model-name"
   },
   "repository": {

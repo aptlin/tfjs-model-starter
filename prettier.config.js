@@ -15,7 +15,12 @@
  * =============================================================================
  */
 
-import * as jasmine_util from '@tensorflow/tfjs-core/dist/jasmine_util';
-import { runTests } from '../test_util';
-
-runTests(jasmine_util);
+module.exports = {
+    useTabs: false,
+    printWidth: 80,
+    tabWidth: 4,
+    singleQuote: true,
+    trailingComma: 'es5',
+    jsxBracketSameLine: false,
+    noSemi: true,
+};

@@ -34,14 +34,14 @@ Install dependencies:
 yarn
 ```
 
-Publish coco-ssd locally:
+Publish `model-name` locally:
 ```sh
 yarn publish-local
 ```
 
-`cd` into this directory (model-name/demo) and install dependencies:
+`cd` into this directory (`model-name/demo`) and install dependencies:
 
-```s
+```sh
 cd demo
 yarn
 ```

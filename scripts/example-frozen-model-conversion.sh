@@ -50,13 +50,22 @@ echo "Downloading models to $MODEL_DIR..."
 
 for MODEL_URL in "${MODELS[@]}"
 do
+  printf -- '=%.0s' {1..80}; echo ""
+
+  printf -- '-%.0s' {1..80}; echo ""
+  echo "Downloading and extracting the model from $URL_PREFIX/$MODEL_URL$URL_SUFFIX..."
+  printf -- '-%.0s' {1..80}; echo ""
+
   wget -P $MODEL_DIR $URL_PREFIX/$MODEL_URL$URL_SUFFIX && \
   mkdir -p $MODEL_DIR/$MODEL_URL && \
   tar -xvzf $MODEL_DIR/$MODEL_URL$URL_SUFFIX -C $MODEL_DIR/$MODEL_URL --strip-components 1 && \
 
   OUTPUT_DIR="model"
 
+  printf -- '-%.0s' {1..80}; echo ""
   echo "Converting the model to JSON..."
+  printf -- '-%.0s' {1..80}; echo ""
+
   tensorflowjs_converter \
     --input_format=tf_frozen_model \
     --output_json=true \
@@ -65,7 +74,10 @@ do
     $MODEL_DIR/$MODEL_URL/frozen_inference_graph.pb \
     $SCRIPT_DIR/$1/$MODEL_NAME/$OUTPUT_DIR
 
+  printf -- '-%.0s' {1..80}; echo ""
   echo "Converting the model to quantized JSON..."
+  printf -- '-%.0s' {1..80}; echo ""
+
   tensorflowjs_converter \
     --input_format=tf_frozen_model \
     --output_json=true \
@@ -74,5 +86,8 @@ do
     --quantization_bytes 2
     $MODEL_DIR/$MODEL_URL/frozen_inference_graph.pb \
     $SCRIPT_DIR/$1/$MODEL_NAME/quantized/$OUTPUT_DIR
+
+  printf -- '=%.0s' {1..80}; echo ""
 done
+
 echo "Success!"

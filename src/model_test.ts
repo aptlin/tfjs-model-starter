@@ -20,7 +20,7 @@ import {
   describeWithFlags,
   NODE_ENVS,
 } from '@tensorflow/tfjs-core/dist/jasmine_util';
-import DummyModel from '.';
+import { DummyModel } from '.';
 
 describeWithFlags('Dummy', NODE_ENVS, () => {
   it('DummyModel detect method should generate no output', async () => {

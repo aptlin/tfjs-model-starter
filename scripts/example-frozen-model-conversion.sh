@@ -41,12 +41,15 @@ DIST_DIR='./dist'
 
 trap 'rm -rf -- "$MODEL_DIR"' INT TERM HUP EXIT
 
+printf -- '=%.0s' {1..80}; echo ""
+echo "Setting up the installation environment..."
+printf -- '=%.0s' {1..80}; echo ""
+
 mkdir -p $SCRIPT_DIR/$1/$MODEL_NAME/quantized && \
 cd $MODEL_DIR && \
 virtualenv --no-site-packages venv && \
 source venv/bin/activate && \
-pip install tensorflowjs==0.8.6 && \
-echo "Downloading models to $MODEL_DIR..."
+pip install tensorflowjs==0.8.6
 
 for MODEL_URL in "${MODELS[@]}"
 do

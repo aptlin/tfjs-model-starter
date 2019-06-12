@@ -15,6 +15,6 @@
  * =============================================================================
  */
 
-export default class DummyModel {
+export class DummyModel {
   public predict(X: any) {}
 }

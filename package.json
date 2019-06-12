@@ -13,28 +13,29 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sdll/tfjs-model-starter"
+    "url": "https://github.com/tensorflow/tfjs-models"
   },
   "peerDependencies": {
     "@tensorflow/tfjs": "^1.1.0"
   },
   "devDependencies": {
     "@tensorflow/tfjs": "^1.1.0",
-    "@types/jasmine": "~3.3.12",
+    "@types/jasmine": "~3.3.13",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-runtime": "~6.23.0",
     "jasmine": "^3.2.0",
     "jasmine-core": "~3.4.0",
+    "prettier-eslint": "^8.8.2",
     "rimraf": "~2.6.2",
-    "rollup": "~1.12.2",
+    "rollup": "~1.15.1",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "~5.0.0",
+    "rollup-plugin-node-resolve": "~5.0.1",
     "rollup-plugin-terser": "^5.0.0",
     "rollup-plugin-typescript2": "~0.21.1",
-    "ts-node": "~8.1.0",
-    "tslint": "~5.16.0",
-    "typescript": "3.4.5",
-    "yalc": "~1.0.0-pre.27"
+    "ts-node": "~8.2.0",
+    "tslint": "~5.17.0",
+    "typescript": "3.5.1",
+    "yalc": "~1.0.0-pre.31"
   },
   "scripts": {
     "build": "rimraf dist && tsc",

@@ -14,11 +14,12 @@ cd $MODEL
 rm -r .git*
 ```
 
-Replace `model-name` with the name of your model in `package.json` and install dependencies:
+## Checklist
 
-```shell
-yarn
-```
+- [ ] Add a script to convert the model weights serialized in Python to the format [supported](https://github.com/tensorflow/tfjs-converter) by TensorFlow.js to `scripts` (see [examples](./scripts/))
+- [ ] Customise `package.json`, replacing `model-name` with the name of your model and adding a short description
+- [ ] Give a poignant name to the main [model class](./src/index.ts) and adjust the [tests](./src/model_test.ts) accordingly
+- [ ] Make a beautiful demo showcasing the main functionality (see the [template](./demo/src/index.html))
 
 ## Setup
 

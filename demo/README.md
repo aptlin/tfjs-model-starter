@@ -1,8 +1,8 @@
-# model-name Demo
+# model-name demo
 
 ## Setup
 
-`cd` into the demo/ folder:
+Change into the `demo` folder:
 
 ```sh
 cd model-name/demo
@@ -14,8 +14,7 @@ Install dependencies:
 yarn
 ```
 
-Launch a development server, and watch files for changes. This command will also automatically open
-the demo app in your browser.
+Launch a development server, and watch files for changes.
 
 ```sh
 yarn watch
@@ -23,7 +22,7 @@ yarn watch
 
 ## If you are developing the model locally and want to test the changes in the demo
 
-`cd` into the `model-name/` folder:
+Change into the `model-name` folder:
 
 ```sh
 cd model-name
@@ -39,7 +38,7 @@ Publish `model-name` locally:
 yarn publish-local
 ```
 
-`cd` into this directory (`model-name/demo`) and install dependencies:
+Change into the demo directory (`model-name/demo`) and install dependencies:
 
 ```sh
 cd demo
@@ -56,5 +55,5 @@ Start the dev demo server:
 yarn watch
 ```
 
-To get future updates from the `model-name` source code, just run `yarn publish-local` in the model-name/
+To get future updates from the `model-name` source code, run `yarn publish-local` in the `model-name`
 folder again.

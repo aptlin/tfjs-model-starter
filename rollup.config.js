@@ -21,7 +21,7 @@ import json from 'rollup-plugin-json';
 import { terser } from 'rollup-plugin-terser';
 
 const settings = {
-  name: 'model',
+  name: 'model-name',
 };
 
 const PREAMBLE = `/**

@@ -18,7 +18,8 @@
   "scripts": {
     "watch": "cross-env NODE_ENV=development parcel src/index.html --no-hmr --open ",
     "build": "cross-env NODE_ENV=production parcel build src/index.html --no-minify --public-url ./",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "link-local": "yalc add --link @tensorflow-models/model-name"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

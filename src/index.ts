@@ -15,6 +15,16 @@
  * =============================================================================
  */
 
+import * as tf from '@tensorflow/tfjs';
 export class DummyModel {
+  private model: Promise<tf.GraphModel>;
   public predict(X: any) {}
+  /**
+   * Dispose of the tensors allocated by the model.
+   * You should call this when you are done with the model.
+   */
+
+  public async dispose() {
+    (await this.model).dispose();
+  }
 }

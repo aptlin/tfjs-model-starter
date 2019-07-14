@@ -1,0 +1,1 @@
+export type QuantizationBytes = 1|2|4;

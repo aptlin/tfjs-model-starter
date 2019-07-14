@@ -16,13 +16,52 @@
  */
 
 import * as tf from '@tensorflow/tfjs';
+
+import {config} from './config';
+import {QuantizationBytes} from './types';
+
+export const load = async (quantizationBytes: QuantizationBytes = 2) => {
+  if (tf == null) {
+    throw new Error(
+        `Cannot find TensorFlow.js. ` +
+        `If you are using a <script> tag, please ` +
+        `also include @tensorflow/tfjs on the page before using this model.`);
+  }
+
+  if ([1, 2, 4].indexOf(quantizationBytes) === -1) {
+    throw new Error(`Only quantization to 1, 2 and 4 bytes is supported.`);
+  }
+  const dummyModel = new DummyModel(quantizationBytes);
+  await dummyModel.load();
+  return dummyModel;
+};
+
 export class DummyModel {
-  private model: Promise<tf.GraphModel>;
+  private model: tf.GraphModel;
+  private modelPath: string;
+  private base = 'model-name';
+  public constructor(quantizationBytes: QuantizationBytes = 1) {
+    this.modelPath = `${config['BASE_PATH']}/${
+        quantizationBytes ? `quantized/${quantizationBytes}/` :
+                            ''}${this.base}/model.json`;
+  }
+
+  public async load() {
+    this.model = await tf.loadGraphModel(this.modelPath);
+
+    // Warm the model up.
+    const result =
+        await this.model.predict(tf.zeros([227, 227, 3])) as tf.Tensor1D;
+    await result.data();
+    result.dispose();
+  }
+
   public predict(X: any) {}
   /**
    * Dispose of the tensors allocated by the model.
    * You should call this when you are done with the model.
    */
+
 
   public async dispose() {
     (await this.model).dispose();

@@ -37,10 +37,6 @@
   "eslintConfig": {
     "extends": "google",
     "rules": {
-      "object-curly-spacing": [
-        "error",
-        "always"
-      ],
       "require-jsdoc": 0,
       "valid-jsdoc": 0
     },

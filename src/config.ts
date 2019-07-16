@@ -17,4 +17,4 @@
 
 export const config = {
   BASE_PATH: 'https://storage.googleapis.com/bucket/models/model-name',
-}
+};

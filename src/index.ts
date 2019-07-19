@@ -15,53 +15,50 @@
  * =============================================================================
  */
 
-import * as tf from '@tensorflow/tfjs';
+import * as tfconv from '@tensorflow/tfjs-converter';
+import * as tf from '@tensorflow/tfjs-core';
 
-import {config} from './config';
-import {QuantizationBytes} from './types';
+import {DummyModelConfig} from './types';
+import {getURL} from './utils';
 
-export const load = async (quantizationBytes: QuantizationBytes = 2) => {
+export const load = async (modelConfig: DummyModelConfig = {
+  quantizationBytes: 2
+}) => {
   if (tf == null) {
     throw new Error(
         `Cannot find TensorFlow.js. ` +
         `If you are using a <script> tag, please ` +
         `also include @tensorflow/tfjs on the page before using this model.`);
   }
-
-  if ([1, 2, 4].indexOf(quantizationBytes) === -1) {
-    throw new Error(`Only quantization to 1, 2 and 4 bytes is supported.`);
+  if (modelConfig.quantizationBytes) {
+    if ([1, 2, 4].indexOf(modelConfig.quantizationBytes) === -1) {
+      throw new Error(`Only quantization to 1, 2 and 4 bytes is supported.`);
+    }
+  } else if (!modelConfig.modelUrl) {
+    throw new Error(
+        `DummyModel can be constructed either by passing` +
+        `the weights URL or by specifying one of the degree of quantization, ` +
+        `out of 1, 2 and 4.` +
+        `Aborting, since neither has been provided.`);
   }
-  const dummyModel = new DummyModel(quantizationBytes);
-  await dummyModel.load();
+
+  const url = getURL(modelConfig.quantizationBytes);
+  const graphModel = await tfconv.loadGraphModel(modelConfig.modelUrl || url);
+  const dummyModel = new DummyModel(graphModel);
   return dummyModel;
 };
 
 export class DummyModel {
-  private model: tf.GraphModel;
-  private modelPath: string;
-  private base = 'model-name';
-  public constructor(quantizationBytes: QuantizationBytes = 1) {
-    this.modelPath = `${config['BASE_PATH']}/${
-        quantizationBytes ? `quantized/${quantizationBytes}/` :
-                            ''}${this.base}/model.json`;
+  private model: tfconv.GraphModel;
+  public constructor(graphModel: tfconv.GraphModel) {
+    this.model = graphModel;
   }
 
-  public async load() {
-    this.model = await tf.loadGraphModel(this.modelPath);
-
-    // Warm the model up.
-    const result =
-        await this.model.predict(tf.zeros([227, 227, 3])) as tf.Tensor1D;
-    await result.data();
-    result.dispose();
-  }
-
-  public predict(X: any) {}
+  public predict(X: tf.Tensor) {}
   /**
    * Dispose of the tensors allocated by the model.
    * You should call this when you are done with the model.
    */
-
 
   public async dispose() {
     (await this.model).dispose();

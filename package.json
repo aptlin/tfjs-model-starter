@@ -7,7 +7,7 @@
   "jsdelivr": "dist/model-name.min.js",
   "types": "dist/index.d.ts",
   "model": {
-    "name": "model-name"
+    "name": "@tensorflow-models/model-name"
   },
   "repository": {
     "type": "git",

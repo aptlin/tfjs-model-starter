@@ -3,6 +3,7 @@ import {QuantizationBytes} from './types';
 
 export const getURL = (quantizationBytes: QuantizationBytes) => {
   return `${config['BASE_PATH']}/${
-      quantizationBytes ? `quantized/${quantizationBytes}/` :
-                          ''}model-name/model.json`;
+      ([1, 2].indexOf(quantizationBytes) !== -1) ?
+          `quantized/${quantizationBytes}/` :
+          ''}psenet/model.json`;
 };

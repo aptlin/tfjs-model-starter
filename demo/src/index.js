@@ -16,3 +16,36 @@
  */
 
 import 'bulma/css/bulma.css';
+
+import {load} from '@tensorflow-models/text-detection';
+import * as tf from '@tensorflow/tfjs';
+
+const state = {};
+const model = {};
+
+const status = (message) => {
+  const statusMessage = document.getElementById('status-message');
+  statusMessage.innerText = message;
+  console.log(message);
+};
+
+const howManySecondsFrom = (start) => {
+  return ((performance.now() - start) / 1000).toFixed(2);
+};
+
+const initializeModel = async () => {
+  status('Loading the model...');
+  const loadingStart = performance.now();
+  const quantizationBytes = Number(getSelectorValue('quantizationBytes'));
+  state.quantizationBytes = quantizationBytes;
+  await tf.nextFrame();
+  model[quantizationBytes] = await load({quantizationBytes});
+  const runner = document.getElementById('run');
+  runner.onclick = async () => {
+    console.log('This is a dummy model');
+  };
+  status(`Initialised the model in ${
+    howManySecondsFrom(loadingStart)} seconds, waiting for input...`);
+};
+
+window.onload = initializeModel;
